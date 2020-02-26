@@ -117,7 +117,8 @@ open class TextFieldRowFormer<T: UITableViewCell>
     
     @objc private dynamic func textChanged(textField: UITextField) {
         if enabled {
-            let text = textField.text ?? ""
+            let text = (textField.text ?? "").replacingOccurrences(of: " ", with: "\u{00a0}")
+            textField.text = text
             self.text = text
             onTextChanged?(text)
         }
